@@ -1,0 +1,61 @@
+<div class="modal-backdrop" (click)="onBackdropClick($event)">
+  <section class="modal card fade-up" role="dialog" aria-modal="true" aria-label="Reserve Room">
+    <header class="modal-header">
+      <h2>Reserve Room</h2>
+      <button type="button" class="close-btn" (click)="onCancel()" [disabled]="submitting">&times;</button>
+    </header>
+
+    <form *ngIf="room as currentRoom" class="modal-content" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="context-block">
+        <p><strong>Date:</strong> {{ date }}</p>
+        <p><strong>Room:</strong> {{ currentRoom.room_name }} ({{ currentRoom.room_number }})</p>
+        <p><strong>Capacity:</strong> {{ currentRoom.capacity }}</p>
+      </div>
+
+      <div class="field-group">
+        <label for="event-name">Event name</label>
+        <input id="event-name" type="text" maxlength="100" formControlName="event_name" placeholder="Enter event name" />
+        <p *ngIf="form.controls.event_name.touched && form.controls.event_name.hasError('required')" class="inline-error">
+          Event name is required.
+        </p>
+      </div>
+
+      <div class="field-group">
+        <label>Choose slot range</label>
+        <ul class="rules-hint">
+          <li>Max reservation length: 2 hours (4 slots)</li>
+          <li>Slots must be consecutive</li>
+          <li>Click one slot to set anchor, then click another slot to define range you want to reserve</li>
+        </ul>
+        <app-slot-picker
+          [slots]="slotPickerSlots"
+          (selectionChange)="onSelectionChange($event)"
+          (selectionInvalid)="onSelectionInvalid($event)"
+        ></app-slot-picker>
+        <p *ngIf="slotError" class="inline-error">{{ slotError }}</p>
+      </div>
+
+      <div class="summary">
+        <h4>Selected Summary</h4>
+        <p><strong>Start:</strong> {{ startTimeText }}</p>
+        <p><strong>End:</strong> {{ endTimeText }}</p>
+        <p><strong>Duration:</strong> {{ durationText }}</p>
+      </div>
+
+      <app-feedback *ngIf="formError" tone="error" [message]="formError"></app-feedback>
+    </form>
+
+    <footer class="actions">
+      <button type="button" class="btn btn-secondary" (click)="onCancel()" [disabled]="submitting">Cancel</button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="onSubmit()"
+        [disabled]="disableSubmit"
+      >
+        {{ submitting ? 'Creating...' : 'Confirm Reservation' }}
+      </button>
+    </footer>
+  </section>
+</div>
+

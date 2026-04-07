@@ -1,0 +1,66 @@
+.app-shell {
+  min-height: 100vh;
+}
+
+.topbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 20px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  background: #0f766e;
+  box-shadow: 0 0 0 6px rgba(15, 118, 110, 0.2);
+}
+
+.title {
+  font-family: 'Space Grotesk', 'Avenir Next', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.nav {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #2c4547;
+  background: #e8f1f1;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 700;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+}
+
+.nav a:hover {
+  border-color: #b4cdce;
+}
+
+.nav a.active {
+  background: #d4edeb;
+  color: #0f766e;
+  border-color: #9ecfc9;
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

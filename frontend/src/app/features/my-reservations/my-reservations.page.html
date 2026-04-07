@@ -1,0 +1,49 @@
+<section class="page-shell">
+  <header class="page-header fade-up">
+    <div>
+      <h1>My Reservations</h1>
+      <p>Review upcoming reservations and cancel when plans change.</p>
+    </div>
+  </header>
+
+  <app-feedback *ngIf="noticeMessage" [tone]="noticeType" [message]="noticeMessage"></app-feedback>
+  <app-feedback *ngIf="loadError" tone="error" [message]="loadError"></app-feedback>
+
+  <section *ngIf="loading" class="state card fade-up">
+    <p>Loading reservations...</p>
+  </section>
+
+  <section *ngIf="!loading && loadError" class="state card fade-up">
+    <p>Unable to load reservations. Retry.</p>
+    <button class="btn btn-secondary" type="button" (click)="onRetry()">Retry</button>
+  </section>
+
+  <section *ngIf="!loading && !loadError && reservations.length === 0" class="state card fade-up">
+    <p>No reservations yet.</p>
+  </section>
+
+  <section *ngIf="!loading && !loadError && reservations.length > 0" class="list">
+    <article class="item card fade-up" *ngFor="let item of reservations; trackBy: trackReservation">
+      <div class="head">
+        <h3>{{ item.event_name }}</h3>
+        <span class="tag tag-muted">{{ getDuration(item) }}</span>
+      </div>
+
+      <div class="meta">
+        <p><strong>Date:</strong> {{ item.date }}</p>
+        <p><strong>Time:</strong> {{ item.start_time }}-{{ item.end_time }}</p>
+        <p><strong>Room:</strong> {{ item.room.room_name }} ({{ item.room.room_number }})</p>
+      </div>
+
+      <button type="button" class="btn btn-danger cancel-btn" (click)="onOpenCancelDialog(item)">Cancel Reservation</button>
+    </article>
+  </section>
+
+  <app-confirm-cancel-dialog
+    *ngIf="pendingCancel"
+    [reservation]="pendingCancel"
+    [busy]="canceling"
+    (keep)="onKeepReservation()"
+    (confirm)="onConfirmCancel()"
+  ></app-confirm-cancel-dialog>
+</section>

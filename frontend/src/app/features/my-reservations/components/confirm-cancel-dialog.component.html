@@ -1,0 +1,20 @@
+<div class="dialog-backdrop" (click)="onBackdropClick($event)">
+  <section class="dialog card fade-up" role="dialog" aria-modal="true" aria-label="Confirm cancel reservation">
+    <h3>Cancel Reservation</h3>
+
+    <div *ngIf="reservation as item" class="details">
+      <p><strong>Event:</strong> {{ item.event_name }}</p>
+      <p><strong>Room:</strong> {{ item.room.room_name }} ({{ item.room.room_number }})</p>
+      <p><strong>Date:</strong> {{ item.date }}</p>
+      <p><strong>Time:</strong> {{ item.start_time }}-{{ item.end_time }}</p>
+      <p><strong>Duration:</strong> {{ durationText }}</p>
+    </div>
+
+    <footer class="actions">
+      <button type="button" class="btn btn-secondary" (click)="onKeep()" [disabled]="busy">Keep Reservation</button>
+      <button type="button" class="btn btn-danger" (click)="onConfirm()" [disabled]="busy">
+        {{ busy ? 'Canceling...' : 'Confirm Cancel' }}
+      </button>
+    </footer>
+  </section>
+</div>
