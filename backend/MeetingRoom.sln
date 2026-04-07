@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E7B8D088-6046-4931-8724-78A88ADEBB02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingRoom.Api", "src\MeetingRoom.Api\MeetingRoom.Api.csproj", "{A860D84C-FF1C-4758-A799-34C8913FDE1C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A860D84C-FF1C-4758-A799-34C8913FDE1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A860D84C-FF1C-4758-A799-34C8913FDE1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A860D84C-FF1C-4758-A799-34C8913FDE1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A860D84C-FF1C-4758-A799-34C8913FDE1C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A860D84C-FF1C-4758-A799-34C8913FDE1C} = {E7B8D088-6046-4931-8724-78A88ADEBB02}
+	EndGlobalSection
+EndGlobal
