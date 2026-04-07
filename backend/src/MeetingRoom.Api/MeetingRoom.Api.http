@@ -1,0 +1,24 @@
+@MeetingRoom.Api_HostAddress = http://localhost:5225
+
+GET {{MeetingRoom.Api_HostAddress}}/api/rooms?date=2026-04-06
+Accept: application/json
+
+###
+
+POST {{MeetingRoom.Api_HostAddress}}/api/reservations
+Content-Type: application/json
+
+{
+  "room_id": "room-a",
+  "date": "2026-04-06",
+  "start_slot_index": 2,
+  "end_slot_index": 4,
+  "event_name": "Sprint Planning"
+}
+
+###
+
+GET {{MeetingRoom.Api_HostAddress}}/api/reservations
+Accept: application/json
+
+###
