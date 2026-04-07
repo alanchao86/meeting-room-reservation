@@ -1,0 +1,70 @@
+.room-card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 560px;
+}
+
+.room-photo {
+  height: 220px;
+  background: linear-gradient(135deg, #e7f4f3, #f7f3e9);
+}
+
+.room-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.room-photo.no-image .placeholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: #375455;
+  font-weight: 700;
+}
+
+.room-content {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+.room-meta {
+  color: #334e50;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.slots-block .label {
+  font-size: 14px;
+  color: #2f4c4e;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 148px;
+  max-height: 170px;
+  overflow: auto;
+}
+
+.empty {
+  color: #677879;
+  font-size: 13px;
+}
+
+.reserve-btn {
+  margin-top: 8px;
+  width: 100%;
+}

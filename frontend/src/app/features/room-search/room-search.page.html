@@ -1,0 +1,40 @@
+<section class="page-shell">
+  <header class="page-header fade-up">
+    <div>
+      <h1>Room Search</h1>
+      <p>Choose a date, find available slots, and reserve a room.</p>
+    </div>
+    <label class="date-filter">
+      <span>Date</span>
+      <input type="date" [min]="today" [(ngModel)]="selectedDate" (change)="onDateChange()" />
+    </label>
+  </header>
+
+  <app-feedback *ngIf="successMessage" tone="success" [message]="successMessage"></app-feedback>
+  <app-feedback *ngIf="loadError" tone="error" [message]="loadError"></app-feedback>
+
+  <section *ngIf="loading" class="state card fade-up">
+    <p>Loading rooms...</p>
+  </section>
+
+  <section *ngIf="!loading && loadError" class="state card fade-up">
+    <p>Unable to load rooms. Retry.</p>
+    <button type="button" class="btn btn-secondary" (click)="onRetry()">Retry</button>
+  </section>
+
+  <section *ngIf="!loading && !loadError && rooms.length === 0" class="state card fade-up">
+    <p>No rooms available.</p>
+  </section>
+
+  <section *ngIf="!loading && !loadError && rooms.length > 0" class="room-grid">
+    <app-room-card *ngFor="let room of rooms; trackBy: trackRoom" [room]="room" (reserve)="onOpenReserve($event)"></app-room-card>
+  </section>
+
+  <app-reservation-modal
+    *ngIf="activeRoom"
+    [room]="activeRoom"
+    [date]="selectedDate"
+    (closed)="onCloseModal()"
+    (created)="onReservationCreated()"
+  ></app-reservation-modal>
+</section>

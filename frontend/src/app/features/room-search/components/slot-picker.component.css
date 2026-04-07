@@ -1,0 +1,49 @@
+.slot-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-height: 240px;
+  overflow: auto;
+  padding: 4px 2px 4px 0;
+}
+
+.slot-chip {
+  border: 1px solid #bcd2d4;
+  background: #f8fbfb;
+  color: #163133;
+  padding: 7px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  font-weight: 600;
+}
+
+.slot-chip:hover {
+  border-color: #78aaaa;
+}
+
+.slot-chip:disabled {
+  cursor: not-allowed;
+}
+
+.slot-chip.unavailable {
+  background: #e8ecef;
+  color: #7c888d;
+  border-color: #c7d0d6;
+  text-decoration: line-through;
+}
+
+.slot-chip.anchor {
+  border-color: #0f766e;
+  background: #e4f5f3;
+}
+
+.slot-chip.selected {
+  border-color: #0f766e;
+  color: #fff;
+  background: linear-gradient(135deg, #0f766e, #18a499);
+}
+
+.empty {
+  color: #677879;
+}

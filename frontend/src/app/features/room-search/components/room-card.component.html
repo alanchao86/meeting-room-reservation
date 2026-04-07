@@ -1,0 +1,34 @@
+﻿<article class="room-card card fade-up">
+  <div class="room-photo" [class.no-image]="!room.image_url">
+    <img *ngIf="room.image_url" [src]="room.image_url" [alt]="room.room_name" loading="lazy" />
+    <div *ngIf="!room.image_url" class="placeholder">
+      <span>{{ room.room_name }}</span>
+    </div>
+  </div>
+
+  <div class="room-content">
+    <h3>{{ room.room_name }}</h3>
+    <p class="room-meta">Room {{ room.room_number }} - Capacity {{ room.capacity }}</p>
+
+    <div class="slots-block">
+      <p class="label">Available slots</p>
+      <div *ngIf="room.available_slots.length > 0; else noSlots" class="chips">
+        <span class="tag tag-muted" *ngFor="let slot of room.available_slots; trackBy: trackSlot">
+          {{ slot.start_time }}-{{ slot.end_time }}
+        </span>
+      </div>
+      <ng-template #noSlots>
+        <p class="empty">No reservable slots available.</p>
+      </ng-template>
+    </div>
+
+    <button
+      *ngIf="room.has_reservable_slots && room.available_slots.length > 0"
+      class="btn btn-primary reserve-btn"
+      type="button"
+      (click)="onReserve()"
+    >
+      Reserve
+    </button>
+  </div>
+</article>

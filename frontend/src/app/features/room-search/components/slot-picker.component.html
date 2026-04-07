@@ -1,0 +1,18 @@
+<div *ngIf="sortedSlots.length > 0; else noSlots" class="slot-picker">
+  <button
+    type="button"
+    class="slot-chip"
+    *ngFor="let slot of sortedSlots"
+    [class.anchor]="isAnchor(slot.slot_index)"
+    [class.selected]="isSelected(slot.slot_index)"
+    [class.unavailable]="!slot.is_selectable"
+    [disabled]="!slot.is_selectable"
+    (click)="onSelect(slot.slot_index)"
+  >
+    <span>{{ slot.start_time }}-{{ slot.end_time }}</span>
+  </button>
+</div>
+
+<ng-template #noSlots>
+  <p class="empty">No reservable slots for this room/date.</p>
+</ng-template>
